@@ -1,0 +1,622 @@
+@page "/"
+@inject IUserContextService UserContextService
+@inject IPpvApprovalService PpvApprovalService
+@inject IConfiguration Configuration
+
+<PageTitle>Approvals Dashboard</PageTitle>
+
+<SfToast ID="dashboard_approval_toast" @ref="_toast" Timeout="4200" ShowCloseButton="true" ShowProgressBar="true">
+    <ToastPosition X="Right" Y="Top" />
+</SfToast>
+
+<SfDialog Width="440px" IsModal="true" ShowCloseIcon="true" @bind-Visible="_showConfirmDialog">
+    <DialogTemplates>
+        <Header>@_confirmTitle</Header>
+        <Content>
+            <p>@_confirmMessage</p>
+            @if (_selectedItem is not null)
+            {
+                <dl class="dialog-summary">
+                    <div><dt>Receipt</dt><dd>@_selectedItem.ReceiptNumber</dd></div>
+                    <div><dt>Vendor</dt><dd>@_selectedItem.VendorName</dd></div>
+                </dl>
+            }
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="Cancel" OnClick="@CloseConfirmDialog" />
+        <DialogButton Content="@_confirmActionText" CssClass="@_confirmButtonClass" IsPrimary="true" OnClick="@RunConfirmedActionAsync" />
+    </DialogButtons>
+</SfDialog>
+
+<section class="page-header command-header">
+    <div class="brand-block">
+        <img class="brand-logo" src="/brand_logo.png" alt="NZ Blood logo" onerror="this.hidden=true; this.nextElementSibling.hidden=false" />
+        <div class="app-mark" hidden>AW</div>
+        <div>
+            <p class="eyebrow">Approvals Workflow</p>
+            <h1>Price Variance Approvals</h1>
+        </div>
+    </div>
+    <div class="user-pill">
+        <span>@(_user?.UserId ?? "Loading")</span>
+        @if (_user?.IsAdminUser == true)
+        {
+            <strong>Admin</strong>
+        }
+        else if (_user?.IsManager == true)
+        {
+            <strong>Manager</strong>
+        }
+    </div>
+</section>
+
+<StatusBanner Message="@_message" Tone="@_messageTone" />
+
+<section class="command-bar approval-command-bar">
+    <div class="metric-row">
+        <div class="metric accent">
+            <span>Remaining</span>
+            <strong>@_items.Count</strong>
+        </div>
+        <div class="metric">
+            <span>Manager Review</span>
+            <strong>@_items.Count(item => item.ManagerApproval == 1)</strong>
+        </div>
+        <div class="metric">
+            <span>Submitted Today</span>
+            <strong>@_items.Count(item => item.SubmittedDateTime?.Date == DateTime.Today)</strong>
+        </div>
+    </div>
+    <label class="search-box">
+        <span>Search</span>
+        <input @bind="_searchText" @bind:event="oninput" placeholder="Receipt, vendor, PO, approver" />
+    </label>
+    <label class="search-box">
+        <span>Sort</span>
+        <select @bind="_sortMode">
+            <option value="@SortNewest">Newest first</option>
+            <option value="@SortOldest">Oldest first</option>
+            <option value="@SortVendor">Vendor</option>
+            <option value="@SortReceipt">Receipt</option>
+            <option value="@SortManager">Manager review</option>
+        </select>
+    </label>
+    <button class="button secondary" @onclick="LoadAsync" disabled="@_loading">Refresh</button>
+</section>
+
+@if (_loading)
+{
+    <section class="loading-panel">Loading approvals...</section>
+}
+else if (_items.Count == 0)
+{
+    <section class="empty-state">
+        <h2>No approvals waiting</h2>
+        <p>There are no price variance transactions available for approval at this time.</p>
+    </section>
+}
+else
+{
+    <section class="approval-workbench @(_selectedItem is null ? "cards-only" : null)">
+        <section class="approval-card-surface">
+            <div class="surface-title">
+                <div>
+                    <h2>Approval Queue</h2>
+                    <span>@VisibleItems.Count receipt(s) match the current view</span>
+                </div>
+                <span class="mode-chip">@DataModeLabel</span>
+            </div>
+
+            @if (VisibleItems.Count == 0)
+            {
+                <div class="empty-card-list">
+                    <h2>No matching approvals</h2>
+                    <p>Try clearing the search text or changing the sort order.</p>
+                </div>
+            }
+            else
+            {
+                <div class="approval-card-list">
+                    @foreach (var item in VisibleItems)
+                    {
+                        var selected = _selectedItem?.ReceiptNumber == item.ReceiptNumber;
+                        <button class="approval-card @(selected ? "selected" : null)" @onclick="() => SelectItemAsync(item)">
+                            <span class="card-kicker">Receipt @item.ReceiptNumber</span>
+                            <span class="card-title">@SafeText(item.VendorName, "Unknown vendor")</span>
+                            <span class="card-subtitle">@SafeText(item.VendorId, "No vendor ID")</span>
+
+                            <span class="card-field-grid">
+                                <span>
+                                    <span>Vendor Doc</span>
+                                    <strong>@SafeText(item.VendorDocNumber, "Not recorded")</strong>
+                                </span>
+                                <span>
+                                    <span>Purchase Orders</span>
+                                    <strong>@SafeText(item.PurchaseOrders, "Not recorded")</strong>
+                                </span>
+                                <span>
+                                    <span>Submitted</span>
+                                    <strong>@FormatDate(item.SubmittedDateTime)</strong>
+                                </span>
+                                <span>
+                                    <span>Submitted By</span>
+                                    <strong>@SafeText(item.SubmittedBy, "Unknown")</strong>
+                                </span>
+                            </span>
+
+                            <span class="card-footer-row">
+                                @if (item.ManagerApproval == 1)
+                                {
+                                    <span class="badge warning">@SafeText(item.ManagerApprovalDisplay, "Manager required")</span>
+                                }
+                                else
+                                {
+                                    <span class="badge quiet">Standard approval</span>
+                                }
+
+                                @if (!string.IsNullOrWhiteSpace(item.Comment))
+                                {
+                                    <span class="comment-indicator">Comment</span>
+                                }
+                            </span>
+                        </button>
+                    }
+                </div>
+            }
+        </section>
+
+        <aside class="approval-detail-panel">
+            @if (_selectedItem is null)
+            {
+                <div class="panel-empty">
+                    <h2>Select a receipt</h2>
+                    <p>Choose a card to inspect the approval details before opening the full review.</p>
+                </div>
+            }
+            else
+            {
+                <div class="panel-header">
+                    <div>
+                        <span class="card-kicker">Receipt @_selectedItem.ReceiptNumber</span>
+                        <h2>@SafeText(_selectedItem.VendorName, "Unknown vendor")</h2>
+                    </div>
+                    <div class="button-group">
+                        <a class="button secondary" href="@($"/ppv/{Uri.EscapeDataString(_selectedItem.ReceiptNumber)}")">Full page</a>
+                    </div>
+                </div>
+
+                @if (_detailLoading)
+                {
+                    <div class="panel-loading">Loading approval details...</div>
+                }
+                else if (_selectedDetail is null)
+                {
+                    <div class="panel-empty">
+                        <h2>Details unavailable</h2>
+                        <p>This receipt may have already been processed or is unavailable to the current user.</p>
+                    </div>
+                }
+                else
+                {
+                    <section class="panel-section panel-top-grid">
+                        <div>
+                            <h3>Receipt Data</h3>
+                            <dl class="detail-list">
+                                <div><dt>Vendor Doc No</dt><dd>@SafeText(_selectedItem.VendorDocNumber, "Not recorded")</dd></div>
+                                <div><dt>Purchase Orders</dt><dd>@SafeText(_selectedItem.PurchaseOrders, "Not recorded")</dd></div>
+                                <div><dt>Submitted By</dt><dd>@SafeText(_selectedItem.SubmittedBy, "Unknown")</dd></div>
+                                <div><dt>Submitted Date</dt><dd>@FormatDate(_selectedItem.SubmittedDateTime)</dd></div>
+                                <div><dt>Total Variance</dt><dd class="@PanelVarianceClass">@PanelTotalVariance.ToString("C2")</dd></div>
+                                <div><dt>Approvers</dt><dd>@SafeText(_selectedItem.Approvers, "Not recorded")</dd></div>
+                            </dl>
+                        </div>
+
+                        <div>
+                            <div class="panel-section-heading">
+                                <h3>Attachments</h3>
+                                <span>@_selectedDetail.Attachments.Count file(s)</span>
+                            </div>
+                            @if (_selectedDetail.Attachments.Count == 0)
+                            {
+                                <p>No invoice attachments available.</p>
+                            }
+                            else
+                            {
+                                <ul class="file-list">
+                                    @foreach (var attachment in _selectedDetail.Attachments)
+                                    {
+                                        <li>
+                                            <FileIcon FileName="@attachment.FileName" />
+                                            <a href="@($"/attachments/ppv/{Uri.EscapeDataString(attachment.AttachmentId)}")">@attachment.FileName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </section>
+
+                    <section class="panel-section compact">
+                        <div class="panel-section-heading">
+                            <h3>Purchase Order Lines</h3>
+                            <span>@_selectedDetail.Lines.Count item(s)</span>
+                        </div>
+                        @if (_selectedDetail.Lines.Count == 0)
+                        {
+                            <p>No purchase order line items available.</p>
+                        }
+                        else
+                        {
+                            <div class="panel-table-wrap">
+                                <table class="panel-line-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Description</th>
+                                            <th>PO</th>
+                                            <th>Variance</th>
+                                            <th>PO Cost</th>
+                                            <th>Inv. Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var line in _selectedDetail.Lines)
+                                        {
+                                            <tr>
+                                                <td>@SafeText(line.ItemNumber, "-")</td>
+                                                <td>@SafeText(line.ItemDescription, "-")</td>
+                                                <td>
+                                                    @if (!string.IsNullOrWhiteSpace(line.PoNumber))
+                                                    {
+                                                        <a href="@($"/attachments/ppv-po/{Uri.EscapeDataString(_selectedItem.ReceiptNumber)}/{Uri.EscapeDataString(line.PoNumber)}")">@line.PoNumber</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>-</span>
+                                                    }
+                                                </td>
+                                                <td class="numeric @(line.Variance >= 0 ? "variance-positive" : "variance-negative")">@line.Variance.ToString("C2")</td>
+                                                <td class="numeric">@line.PoCost.ToString("C2")</td>
+                                                <td class="numeric">@line.InvoiceCost.ToString("C2")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </section>
+
+                    <section class="panel-section">
+                        <div class="panel-section-heading">
+                            <h3>Approval Data</h3>
+                            @if (_selectedItem.ManagerApproval == 1)
+                            {
+                                <span class="badge warning">@SafeText(_selectedItem.ManagerApprovalDisplay, "Manager required")</span>
+                            }
+                        </div>
+                        <p class="preserve-lines">@SafeText(_selectedDetail.TransactionComment, "No transaction comments recorded.")</p>
+                        <label class="comment-box">
+                            <span>Approver / Admin Comments</span>
+                            <textarea @bind="_approverComments" placeholder="@_commentPlaceholder"></textarea>
+                        </label>
+                        <div class="button-group panel-actions">
+                            @if (_user?.IsAdminUser == true)
+                            {
+                                <button class="button danger" @onclick="ResetAsync" disabled="@_processing">Reset</button>
+                            }
+                            else
+                            {
+                                <button class="button danger" @onclick="RejectAsync" disabled="@_processing">Reject</button>
+                                <button class="button primary" @onclick="ApproveAsync" disabled="@_processing">Approve</button>
+                            }
+                        </div>
+                    </section>
+
+                    @if (_user?.IsAdminUser == true || _user?.IsManager == true)
+                    {
+                        <section class="panel-section compact">
+                            <div class="panel-section-heading">
+                                <h3>Status History</h3>
+                                <span>@_selectedDetail.History.Count event(s)</span>
+                            </div>
+                            @if (_selectedDetail.History.Count == 0)
+                            {
+                                <p>No status history available.</p>
+                            }
+                            else
+                            {
+                                <div class="history-list">
+                                    @foreach (var history in _selectedDetail.History)
+                                    {
+                                        <div class="history-item">
+                                            <strong>@history.Status</strong>
+                                            <span>@history.UserId &middot; @FormatDate(history.StatusDateTime)</span>
+                                            <p>@history.Comment</p>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </section>
+                    }
+                }
+            }
+        </aside>
+    </section>
+}
+
+@code {
+    private const string SortNewest = "newest";
+    private const string SortOldest = "oldest";
+    private const string SortVendor = "vendor";
+    private const string SortReceipt = "receipt";
+    private const string SortManager = "manager";
+
+    private UserContext? _user;
+    private List<PpvDashboardItem> _items = [];
+    private PpvDashboardItem? _selectedItem;
+    private PpvApprovalDetail? _selectedDetail;
+    private SfToast? _toast;
+    private string _searchText = string.Empty;
+    private string _sortMode = SortNewest;
+    private string _approverComments = string.Empty;
+    private string _commentPlaceholder = string.Empty;
+    private string _message = string.Empty;
+    private string _messageTone = "info";
+    private string _confirmTitle = string.Empty;
+    private string _confirmMessage = string.Empty;
+    private string _confirmActionText = string.Empty;
+    private string _confirmButtonClass = string.Empty;
+    private bool _loading = true;
+    private bool _detailLoading;
+    private bool _processing;
+    private bool _showConfirmDialog;
+    private ApprovalAction _pendingAction;
+
+    private List<PpvDashboardItem> VisibleItems
+    {
+        get
+        {
+            var query = _items.AsEnumerable();
+
+            if (!string.IsNullOrWhiteSpace(_searchText))
+            {
+                var value = _searchText.Trim();
+                query = query.Where(item =>
+                    Contains(item.ReceiptNumber, value) ||
+                    Contains(item.VendorName, value) ||
+                    Contains(item.VendorId, value) ||
+                    Contains(item.VendorDocNumber, value) ||
+                    Contains(item.PurchaseOrders, value) ||
+                    Contains(item.Approvers, value));
+            }
+
+            query = _sortMode switch
+            {
+                SortOldest => query.OrderBy(item => item.SubmittedDateTime ?? DateTime.MaxValue),
+                SortVendor => query.OrderBy(item => item.VendorName).ThenBy(item => item.ReceiptNumber),
+                SortReceipt => query.OrderBy(item => item.ReceiptNumber),
+                SortManager => query.OrderByDescending(item => item.ManagerApproval).ThenBy(item => item.SubmittedDateTime ?? DateTime.MaxValue),
+                _ => query.OrderByDescending(item => item.SubmittedDateTime ?? DateTime.MinValue)
+            };
+
+            return query.ToList();
+        }
+    }
+
+    private decimal PanelTotalVariance => _selectedDetail?.Lines.Sum(line => line.Variance) ?? 0;
+    private string PanelVarianceClass => PanelTotalVariance >= 0 ? "variance-positive" : "variance-negative";
+    private string DataModeLabel => Configuration.GetValue<bool>("ApprovalWorkflow:UseMockData") ? "Mock data" : "Live SQL";
+
+    protected override Task OnInitializedAsync() => LoadAsync();
+
+    private async Task LoadAsync()
+    {
+        try
+        {
+            _loading = true;
+            _message = string.Empty;
+            _user = await UserContextService.GetCurrentUserAsync();
+            _items = (await PpvApprovalService.GetDashboardAsync(_user)).ToList();
+            _commentPlaceholder = Configuration["ApprovalWorkflow:PpvApprovalCommentNote"]
+                ?? "Please ensure you accurately describe why this is being rejected or approved. Thank you.";
+            _selectedItem = null;
+            _selectedDetail = null;
+            _approverComments = string.Empty;
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+            _messageTone = "error";
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private async Task SelectItemAsync(PpvDashboardItem item)
+    {
+        if (_selectedItem?.ReceiptNumber == item.ReceiptNumber)
+        {
+            return;
+        }
+
+        _selectedItem = item;
+        _approverComments = string.Empty;
+        await LoadDetailAsync(item);
+    }
+
+    private async Task LoadDetailAsync(PpvDashboardItem item)
+    {
+        if (_user is null)
+        {
+            return;
+        }
+
+        try
+        {
+            _detailLoading = true;
+            _selectedDetail = await PpvApprovalService.GetApprovalDetailAsync(item.ReceiptNumber, _user);
+        }
+        catch (Exception ex)
+        {
+            _selectedDetail = null;
+            _message = ex.Message;
+            _messageTone = "error";
+        }
+        finally
+        {
+            _detailLoading = false;
+        }
+    }
+
+    private void ApproveAsync()
+    {
+        if (_selectedDetail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Approve,
+            "Approve receipt",
+            "Are you sure you want to approve this receipt?",
+            "Approve",
+            "e-success");
+    }
+
+    private void RejectAsync()
+    {
+        if (_selectedDetail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Reject,
+            "Reject receipt",
+            "Are you sure you want to reject this receipt?",
+            "Reject",
+            "e-danger");
+    }
+
+    private void ResetAsync()
+    {
+        if (_selectedDetail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Reset,
+            "Reset receipt",
+            "Resetting the receipt will mark the transaction as available in Dynamics GP. Are you sure you want to reset this receipt?",
+            "Reset",
+            "e-danger");
+    }
+
+    private void OpenConfirmDialog(ApprovalAction action, string title, string message, string actionText, string buttonClass)
+    {
+        _pendingAction = action;
+        _confirmTitle = title;
+        _confirmMessage = message;
+        _confirmActionText = actionText;
+        _confirmButtonClass = buttonClass;
+        _showConfirmDialog = true;
+    }
+
+    private void CloseConfirmDialog()
+    {
+        _showConfirmDialog = false;
+    }
+
+    private async Task RunConfirmedActionAsync()
+    {
+        _showConfirmDialog = false;
+
+        if (_selectedDetail is null || _selectedItem is null || _user is null)
+        {
+            return;
+        }
+
+        switch (_pendingAction)
+        {
+            case ApprovalAction.Approve:
+                await ProcessAsync(() => PpvApprovalService.ApproveAsync(
+                    _selectedItem.ReceiptNumber,
+                    _approverComments,
+                    _user,
+                    _selectedItem.ManagerApproval));
+                break;
+            case ApprovalAction.Reject:
+                await ProcessAsync(() => PpvApprovalService.RejectAsync(_selectedItem.ReceiptNumber, _approverComments, _user));
+                break;
+            case ApprovalAction.Reset:
+                await ProcessAsync(() => PpvApprovalService.ResetAsync(_selectedItem.ReceiptNumber, _approverComments, _user));
+                break;
+        }
+    }
+
+    private async Task ProcessAsync(Func<Task<ApprovalActionResult>> action)
+    {
+        try
+        {
+            _processing = true;
+            var result = await action();
+            _message = result.Message;
+            _messageTone = result.Succeeded ? "success" : "error";
+            await ShowToastAsync(result.Succeeded ? "Complete" : "Action blocked", result.Message, result.Succeeded);
+
+            if (result.Succeeded && _selectedItem is not null)
+            {
+                var processedReceipt = _selectedItem.ReceiptNumber;
+                _items.RemoveAll(item => item.ReceiptNumber == processedReceipt);
+                _selectedItem = null;
+                _selectedDetail = null;
+                _approverComments = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+            _messageTone = "error";
+            await ShowToastAsync("Error", ex.Message, false);
+        }
+        finally
+        {
+            _processing = false;
+        }
+    }
+
+    private static bool Contains(string source, string value)
+        => source.Contains(value, StringComparison.OrdinalIgnoreCase);
+
+    private static string FormatDate(DateTime? value)
+        => value?.ToString("dd MMM yyyy HH:mm") ?? string.Empty;
+
+    private static string SafeText(string value, string fallback)
+        => string.IsNullOrWhiteSpace(value) ? fallback : value;
+
+    private async Task ShowToastAsync(string title, string content, bool success)
+    {
+        if (_toast is null)
+        {
+            return;
+        }
+
+        await _toast.ShowAsync(new ToastModel
+        {
+            Title = title,
+            Content = content,
+            CssClass = success ? "e-toast-success" : "e-toast-danger"
+        });
+    }
+
+    private enum ApprovalAction
+    {
+        None,
+        Approve,
+        Reject,
+        Reset
+    }
+}

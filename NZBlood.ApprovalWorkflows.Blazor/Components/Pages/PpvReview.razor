@@ -1,0 +1,380 @@
+@page "/ppv/{ReceiptNumber}"
+@inject IUserContextService UserContextService
+@inject IPpvApprovalService PpvApprovalService
+@inject NavigationManager Navigation
+@inject IConfiguration Configuration
+
+<PageTitle>PPV Approval Review</PageTitle>
+
+<SfToast ID="approval_toast" @ref="_toast" Timeout="4200" ShowCloseButton="true" ShowProgressBar="true">
+    <ToastPosition X="Right" Y="Top" />
+</SfToast>
+
+<SfDialog Width="440px" IsModal="true" ShowCloseIcon="true" @bind-Visible="_showConfirmDialog">
+    <DialogTemplates>
+        <Header>@_confirmTitle</Header>
+        <Content>
+            <p>@_confirmMessage</p>
+            @if (_detail is not null)
+            {
+                <dl class="dialog-summary">
+                    <div><dt>Receipt</dt><dd>@_detail.Header.ReceiptNumber</dd></div>
+                    <div><dt>Vendor</dt><dd>@_detail.Header.VendorName</dd></div>
+                </dl>
+            }
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton Content="Cancel" OnClick="@CloseConfirmDialog" />
+        <DialogButton Content="@_confirmActionText" CssClass="@_confirmButtonClass" IsPrimary="true" OnClick="@RunConfirmedActionAsync" />
+    </DialogButtons>
+</SfDialog>
+
+<section class="page-header command-header">
+    <div class="brand-block">
+        <img class="brand-logo" src="/brand_logo.png" alt="NZ Blood logo" onerror="this.hidden=true; this.nextElementSibling.hidden=false" />
+        <div class="app-mark receipt" hidden>PPV</div>
+        <div>
+            <p class="eyebrow">Price Variance Approval</p>
+            <h1>@(_detail?.Header.ReceiptNumber ?? ReceiptNumber)</h1>
+        </div>
+    </div>
+    <div class="button-group">
+        <a class="button secondary" href="/">Dashboard</a>
+        @if (_user?.IsAdminUser == true)
+        {
+            <button class="button danger" @onclick="ResetAsync" disabled="@_processing">Reset</button>
+        }
+        else
+        {
+            <button class="button danger" @onclick="RejectAsync" disabled="@_processing">Reject</button>
+            <button class="button primary" @onclick="ApproveAsync" disabled="@_processing">Approve</button>
+        }
+    </div>
+</section>
+
+<StatusBanner Message="@_message" Tone="@_messageTone" />
+
+@if (_loading)
+{
+    <section class="loading-panel">Loading receipt...</section>
+}
+else if (_detail is null)
+{
+    <section class="empty-state">
+        <h2>Receipt unavailable</h2>
+        <p>This receipt has already been processed or is not available to the current user.</p>
+        <a class="button primary" href="/">Return to dashboard</a>
+    </section>
+}
+else
+{
+    <section class="receipt-banner">
+        <div>
+            <span>Vendor</span>
+            <strong>@_detail.Header.VendorName</strong>
+        </div>
+        <div>
+            <span>Vendor Doc No</span>
+            <strong>@_detail.Header.VendorDocNumber</strong>
+        </div>
+        <div>
+            <span>Purchase Orders</span>
+            <strong>@_detail.Header.PurchaseOrders</strong>
+        </div>
+        <div>
+            <span>Total Variance</span>
+            <strong class="@VarianceClass">@TotalVariance.ToString("C2")</strong>
+        </div>
+    </section>
+
+    <section class="review-grid review-grid-top">
+        <article class="summary-panel">
+            <h2>Receipt Details</h2>
+            <dl>
+                <div><dt>Vendor</dt><dd>@_detail.Header.VendorName</dd></div>
+                <div><dt>Vendor ID</dt><dd>@_detail.Header.VendorId</dd></div>
+                <div><dt>Vendor Doc No</dt><dd>@_detail.Header.VendorDocNumber</dd></div>
+                <div><dt>Submitted By</dt><dd>@_detail.Header.SubmittedBy</dd></div>
+                <div><dt>Submitted Date</dt><dd>@FormatDate(_detail.Header.SubmittedDateTime)</dd></div>
+                <div><dt>Purchase Orders</dt><dd>@_detail.Header.PurchaseOrders</dd></div>
+            </dl>
+        </article>
+
+        <article class="summary-panel">
+            <h2>Approval Comments</h2>
+            <p class="preserve-lines">@SafeText(_detail.TransactionComment, "No transaction comments recorded.")</p>
+            <label class="comment-box">
+                <span>Approver / Admin Comments</span>
+                <textarea @bind="_approverComments" placeholder="@_commentPlaceholder"></textarea>
+            </label>
+        </article>
+
+        <article class="summary-panel">
+            <div class="section-heading compact-heading">
+                <h2>Attachments</h2>
+                <span>@_detail.Attachments.Count file(s)</span>
+            </div>
+            @if (_detail.Attachments.Count == 0)
+            {
+                <p>No invoice attachments available.</p>
+            }
+            else
+            {
+                <ul class="file-list">
+                    @foreach (var attachment in _detail.Attachments)
+                    {
+                        <li>
+                            <FileIcon FileName="@attachment.FileName" />
+                            <a href="@($"/attachments/ppv/{Uri.EscapeDataString(attachment.AttachmentId)}")">@attachment.FileName</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </article>
+    </section>
+
+    <section class="line-history-grid">
+        <section class="data-surface">
+            <div class="section-heading">
+                <h2>Purchase Order Line Items</h2>
+                <span>@_detail.Lines.Count item(s)</span>
+            </div>
+            <SfGrid DataSource="@_detail.Lines" CssClass="workflow-grid" AllowSorting="true" AllowFiltering="true" AllowResizing="true" AllowTextWrap="true" GridLines="GridLine.Horizontal" RowHeight="52">
+                <GridFilterSettings Type="FilterType.Menu" />
+                <GridColumns>
+                    <GridColumn Field="@nameof(PpvLineItem.ItemNumber)" HeaderText="Item" Width="150" />
+                    <GridColumn Field="@nameof(PpvLineItem.ItemDescription)" HeaderText="Description" Width="260" />
+                    <GridColumn Field="@nameof(PpvLineItem.VendorItemNumber)" HeaderText="Vendor Item" Width="150" />
+                    <GridColumn Field="@nameof(PpvLineItem.PoNumber)" HeaderText="PO" Width="130">
+                        <Template Context="rowContext">
+                            @{
+                                var line = (PpvLineItem)rowContext;
+                            }
+                            @if (!string.IsNullOrWhiteSpace(line.PoNumber))
+                            {
+                                <a href="@($"/attachments/ppv-po/{Uri.EscapeDataString(_detail.Header.ReceiptNumber)}/{Uri.EscapeDataString(line.PoNumber)}")">@line.PoNumber</a>
+                            }
+                        </Template>
+                    </GridColumn>
+                    <GridColumn Field="@nameof(PpvLineItem.ShipmentNumber)" HeaderText="Shipment" Width="135" />
+                    <GridColumn Field="@nameof(PpvLineItem.Variance)" HeaderText="Variance" Width="130" Format="C2" TextAlign="TextAlign.Right" />
+                    <GridColumn Field="@nameof(PpvLineItem.PoCost)" HeaderText="PO Cost" Width="130" Format="C2" TextAlign="TextAlign.Right" />
+                    <GridColumn Field="@nameof(PpvLineItem.InvoiceCost)" HeaderText="Inv. Cost" Width="130" Format="C2" TextAlign="TextAlign.Right" />
+                </GridColumns>
+            </SfGrid>
+        </section>
+        @if (_user?.IsAdminUser == true || _user?.IsManager == true)
+        {
+            <article class="summary-panel">
+                <div class="section-heading">
+                    <h2>Status History</h2>
+                    <span>@_detail.History.Count event(s)</span>
+                </div>
+                <div class="history-list">
+                    @foreach (var history in _detail.History)
+                    {
+                        <div class="history-item">
+                            <strong>@history.Status</strong>
+                            <span>@history.UserId &middot; @FormatDate(history.StatusDateTime)</span>
+                            <p>@history.Comment</p>
+                        </div>
+                    }
+                </div>
+            </article>
+        }
+    </section>
+}
+
+@code {
+    [Parameter] public string ReceiptNumber { get; set; } = string.Empty;
+
+    private UserContext? _user;
+    private PpvApprovalDetail? _detail;
+    private SfToast? _toast;
+    private string _approverComments = string.Empty;
+    private string _commentPlaceholder = string.Empty;
+    private string _message = string.Empty;
+    private string _messageTone = "info";
+    private string _confirmTitle = string.Empty;
+    private string _confirmMessage = string.Empty;
+    private string _confirmActionText = string.Empty;
+    private string _confirmButtonClass = string.Empty;
+    private bool _loading = true;
+    private bool _processing;
+    private bool _showConfirmDialog;
+    private ApprovalAction _pendingAction;
+
+    private decimal TotalVariance => _detail?.Lines.Sum(line => line.Variance) ?? 0;
+    private string VarianceClass => TotalVariance >= 0 ? "variance-positive" : "variance-negative";
+
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadAsync();
+    }
+
+    private async Task LoadAsync()
+    {
+        try
+        {
+            _loading = true;
+            _message = string.Empty;
+            _user = await UserContextService.GetCurrentUserAsync();
+            _detail = await PpvApprovalService.GetApprovalDetailAsync(ReceiptNumber, _user);
+            _commentPlaceholder = Configuration["ApprovalWorkflow:PpvApprovalCommentNote"]
+                ?? "Please ensure you accurately describe why this is being rejected or approved. Thank you.";
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+            _messageTone = "error";
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+
+    private void ApproveAsync()
+    {
+        if (_detail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Approve,
+            "Approve receipt",
+            "Are you sure you want to approve this receipt?",
+            "Approve",
+            "e-success");
+    }
+
+    private void RejectAsync()
+    {
+        if (_detail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Reject,
+            "Reject receipt",
+            "Are you sure you want to reject this receipt?",
+            "Reject",
+            "e-danger");
+    }
+
+    private void ResetAsync()
+    {
+        if (_detail is null || _user is null)
+        {
+            return;
+        }
+
+        OpenConfirmDialog(
+            ApprovalAction.Reset,
+            "Reset receipt",
+            "Resetting the receipt will mark the transaction as available in Dynamics GP. Are you sure you want to reset this receipt?",
+            "Reset",
+            "e-danger");
+    }
+
+    private void OpenConfirmDialog(ApprovalAction action, string title, string message, string actionText, string buttonClass)
+    {
+        _pendingAction = action;
+        _confirmTitle = title;
+        _confirmMessage = message;
+        _confirmActionText = actionText;
+        _confirmButtonClass = buttonClass;
+        _showConfirmDialog = true;
+    }
+
+    private void CloseConfirmDialog()
+    {
+        _showConfirmDialog = false;
+    }
+
+    private async Task RunConfirmedActionAsync()
+    {
+        _showConfirmDialog = false;
+
+        if (_detail is null || _user is null)
+        {
+            return;
+        }
+
+        switch (_pendingAction)
+        {
+            case ApprovalAction.Approve:
+                await ProcessAsync(() => PpvApprovalService.ApproveAsync(
+                    _detail.Header.ReceiptNumber,
+                    _approverComments,
+                    _user,
+                    _detail.Header.ManagerApproval));
+                break;
+            case ApprovalAction.Reject:
+                await ProcessAsync(() => PpvApprovalService.RejectAsync(_detail.Header.ReceiptNumber, _approverComments, _user));
+                break;
+            case ApprovalAction.Reset:
+                await ProcessAsync(() => PpvApprovalService.ResetAsync(_detail.Header.ReceiptNumber, _approverComments, _user));
+                break;
+        }
+    }
+
+    private async Task ProcessAsync(Func<Task<ApprovalActionResult>> action)
+    {
+        try
+        {
+            _processing = true;
+            var result = await action();
+            _message = result.Message;
+            _messageTone = result.Succeeded ? "success" : "error";
+            await ShowToastAsync(result.Succeeded ? "Complete" : "Action blocked", result.Message, result.Succeeded);
+
+            if (result.Succeeded)
+            {
+                Navigation.NavigateTo("/");
+            }
+        }
+        catch (Exception ex)
+        {
+            _message = ex.Message;
+            _messageTone = "error";
+            await ShowToastAsync("Error", ex.Message, false);
+        }
+        finally
+        {
+            _processing = false;
+        }
+    }
+
+    private static string FormatDate(DateTime? value)
+        => value?.ToString("dd MMM yyyy HH:mm") ?? string.Empty;
+
+    private static string SafeText(string value, string fallback)
+        => string.IsNullOrWhiteSpace(value) ? fallback : value;
+
+    private async Task ShowToastAsync(string title, string content, bool success)
+    {
+        if (_toast is null)
+        {
+            return;
+        }
+
+        await _toast.ShowAsync(new ToastModel
+        {
+            Title = title,
+            Content = content,
+            CssClass = success ? "e-toast-success" : "e-toast-danger"
+        });
+    }
+
+    private enum ApprovalAction
+    {
+        None,
+        Approve,
+        Reject,
+        Reset
+    }
+}

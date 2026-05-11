@@ -1,0 +1,60 @@
+﻿"ReceiptNumber","StatusDateTime","UserID","StatusText","Comment","StatusId"
+"RCT279296        ","11-Jul-23 9:55:27 AM","RobinsonD","Approved","This is approved.  Confirmation has been received from the supplier regarding correct UOM and prices so I will get the system updated.","2"
+"RCT279296","10-Jul-23 9:03:47 AM","ChangY","Submitted","","1"
+"RCT279482        ","17-Jul-23 8:11:03 AM","SzymanikA","Approved","Non-contract, non-stock item","2"
+"RCT279482        ","13-Jul-23 8:39:27 AM","VoschezangR","Approved","Variance noted abd approved, local spreadsheet updated","2"
+"RCT279482","12-Jul-23 12:38:53 PM","OlarteR","Submitted","Hi Rosalie,
+
+Hope this message finds you well.
+Kindly approve this non-stok item order from NZ Safety.
+Anne Gaines is on extended sick leave and i was advise by Mike you are setup as the approver via automatic process.
+
+Thank you.
+
+Rita","1"
+"RCT279482        ","12-Jul-23 9:05:05 AM","LindsayM","Reset","","9"
+"RCT279482","11-Jul-23 5:03:03 PM","OlarteR","Submitted","Thanks Catherine","1"
+"RCT279482        ","11-Jul-23 5:02:01 PM","HyndmanR","Reset","","9"
+"RCT279482","11-Jul-23 4:48:31 PM","OlarteR","Submitted","Hi Dyane,
+
+I know you have approved this PPV invoice through email..
+
+Withe the new system, can you approve it here so the invoice will be available for payment?
+
+Moving forward, once you approve, it will make the invoice ready for payment & no need for you to email us..
+
+Thanks you.
+
+
+Rita
+
+
+Regards,
+
+
+Rita","1"
+"RCT279482        ","11-Jul-23 4:40:52 PM","HyndmanR","Reset","","9"
+"RCT279482","11-Jul-23 3:47:21 PM","OlarteR","Submitted","Hi Andrew,
+
+Dyane has approved this non-stock order..
+
+I've sent it in your email as well..
+
+Thank you.
+
+
+Rita","1"
+"RCT282783        ","11-Jul-23 9:52:03 AM","RobinsonD","Approved","This is approved.  I have requested the price to be updated.","2"
+"RCT282783","10-Jul-23 9:03:08 AM","ChangY","Submitted","","1"
+"RCT284047        ","17-Jul-23 8:12:59 AM","SzymanikA","Approved","Variable service cost.","2"
+"RCT284047        ","17-Jul-23 8:04:09 AM","BolstadA","Approved","Approved please","2"
+"RCT284047","13-Jul-23 9:38:32 AM","ChangY","Submitted","","1"
+"RCT284047        ","13-Jul-23 8:59:41 AM","GambolE","Rejected","Rejected because I am not authorised to approve.","3"
+"RCT284047","10-Jul-23 9:00:49 AM","ChangY","Submitted","","1"
+"RCT284137        ","17-Jul-23 8:11:53 AM","SzymanikA","Approved","Variable service cost. Non-contract.","2"
+"RCT284137        ","16-Jul-23 8:27:30 AM","VoschezangR","Approved","variance noted and approved for payment","2"
+"RCT284137","13-Jul-23 10:58:31 AM","ChangY","Submitted","","1"
+"RCT284137        ","13-Jul-23 10:56:21 AM","WoodA","Rejected","Cant Approve","3"
+"RCT284137","12-Jul-23 10:05:08 AM","ChangY","Submitted","","1"
+"RCT284210        ","27-Jul-23 8:30:50 AM","SzymanikA","Approved","Non-inventory item subject to price increase.","2"
+"RCT284210        ","27-Jul-23 8:01:20 AM","WhiteB","Approved","Approved","2"

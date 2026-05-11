@@ -1,0 +1,20 @@
+﻿[
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ManagerADAccount":  "JamiesonA                                                                                                                                                                                                                                                      ",
+        "ManagerEmailAddress":  "andrea.jamieson@nzblood.co.nz                                                                                                                                                                                                                                  ",
+        "Active":  "No"
+    },
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ManagerADAccount":  "MctagueJ                                                                                                                                                                                                                                                       ",
+        "ManagerEmailAddress":  "jenna.mctague@nzblood.co.nz                                                                                                                                                                                                                                    ",
+        "Active":  "No"
+    },
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ManagerADAccount":  "SzymanikA                                                                                                                                                                                                                                                      ",
+        "ManagerEmailAddress":  "andrew.szymanik@nzblood.co.nz                                                                                                                                                                                                                                  ",
+        "Active":  "Yes"
+    }
+]

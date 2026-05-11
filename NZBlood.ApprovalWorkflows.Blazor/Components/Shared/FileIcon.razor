@@ -1,0 +1,25 @@
+<span class="file-icon @IconClass" aria-hidden="true">@Label</span>
+
+@code {
+    [Parameter] public string FileName { get; set; } = string.Empty;
+
+    private string Extension => Path.GetExtension(FileName).ToLowerInvariant();
+
+    private string Label => Extension switch
+    {
+        ".pdf" => "PDF",
+        ".xls" or ".xlsx" => "XLS",
+        ".doc" or ".docx" => "DOC",
+        ".msg" => "MSG",
+        _ => "FILE"
+    };
+
+    private string IconClass => Extension switch
+    {
+        ".pdf" => "pdf",
+        ".xls" or ".xlsx" => "excel",
+        ".doc" or ".docx" => "word",
+        ".msg" => "mail",
+        _ => "generic"
+    };
+}

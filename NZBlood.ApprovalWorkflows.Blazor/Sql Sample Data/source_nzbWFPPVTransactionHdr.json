@@ -1,0 +1,46 @@
+﻿[
+    {
+        "ReceiptNumber":  "RCT317854        ",
+        "VendorDocNumber":  "ABC001               ",
+        "VendorID":  "HEA004         ",
+        "VendorName":  "Healthcare Logistics                                             ",
+        "UserID":  "sa             ",
+        "UserEmailAddress":  "robert.hyndman@nzblood.co.nz                                                                        ",
+        "CreatedDateTime":  "\/Date(1778298384020)\/",
+        "DocStatus":  0,
+        "Comment":  "Test comment from submission"
+    },
+    {
+        "ReceiptNumber":  "RCT287075        ",
+        "VendorDocNumber":  "602862113            ",
+        "VendorID":  "ONE002         ",
+        "VendorName":  "Onelink                                                          ",
+        "UserID":  "SolankiK       ",
+        "UserEmailAddress":  "accounts.payable@nzblood.co.nz                                                                      ",
+        "CreatedDateTime":  "\/Date(1694500293713)\/",
+        "DocStatus":  0,
+        "Comment":  ""
+    },
+    {
+        "ReceiptNumber":  "RCT287073        ",
+        "VendorDocNumber":  "602859231            ",
+        "VendorID":  "ONE002         ",
+        "VendorName":  "Onelink                                                          ",
+        "UserID":  "SolankiK       ",
+        "UserEmailAddress":  "accounts.payable@nzblood.co.nz                                                                      ",
+        "CreatedDateTime":  "\/Date(1694500152940)\/",
+        "DocStatus":  0,
+        "Comment":  ""
+    },
+    {
+        "ReceiptNumber":  "RCT317855        ",
+        "VendorDocNumber":  "TES091AB67           ",
+        "VendorID":  "HEA004         ",
+        "VendorName":  "Healthcare Logistics                                             ",
+        "UserID":  "sa             ",
+        "UserEmailAddress":  "robert.hyndman@nzblood.co.nz                                                                        ",
+        "CreatedDateTime":  "\/Date(1778298586887)\/",
+        "DocStatus":  0,
+        "Comment":  ""
+    }
+]

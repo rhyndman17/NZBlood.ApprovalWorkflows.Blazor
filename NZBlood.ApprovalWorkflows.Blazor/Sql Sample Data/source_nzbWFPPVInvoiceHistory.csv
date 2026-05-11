@@ -1,0 +1,53 @@
+﻿"ReceiptNumber","UserId","StatusDateTime","StatusId","Comment","IsManager","IsAdmin"
+"RCT284577","SolankiK","05-Jul-23 10:18:58 AM","1","","0","0"
+"RCT284573","SolankiK","05-Jul-23 10:20:31 AM","1","","0","0"
+"RCT284724","SolankiK","05-Jul-23 12:52:57 PM","1","","0","0"
+"RCT284727","SolankiK","05-Jul-23 1:09:48 PM","1","","0","0"
+"RCT284727        ","RobinsonD","06-Jul-23 8:11:04 AM","2","This is approved.  Requesting price to be updated in the system 06.07.23","0","0"
+"RCT284724        ","HassanV","06-Jul-23 8:17:07 AM","2","The variance between PO and the invoice is due to the fact that the PO was raised with an Estimate and not the actual. The invoice is always issued after the job is completed.
+
+Vijay Hassan","0","0"
+"RCT284850","ChangY","07-Jul-23 11:25:10 AM","1","","0","0"
+"RCT279296","ChangY","10-Jul-23 9:03:47 AM","1","","0","0"
+"RCT284229","ChangY","10-Jul-23 9:04:17 AM","1","","0","0"
+"RCT284234","ChangY","10-Jul-23 9:04:41 AM","1","","0","0"
+"RCT284919","SolankiK","10-Jul-23 11:43:06 AM","1","","0","0"
+"RCT284919        ","RobinsonD","11-Jul-23 8:09:19 AM","2","This is approved, the price has been updated in the system","0","0"
+"RCT279482        ","HyndmanR","11-Jul-23 4:40:52 PM","9","","0","1"
+"RCT284850        ","RobinsonD","11-Jul-23 9:45:30 AM","2","This is approved, the price has since been updated in the system.","0","0"
+"RCT279482","OlarteR","11-Jul-23 4:48:31 PM","1","Hi Dyane,
+
+I know you have approved this PPV invoice through email..
+
+Withe the new system, can you approve it here so the invoice will be available for payment?
+
+Moving forward, once you approve, it will make the invoice ready for payment & no need for you to email us..
+
+Thanks you.
+
+
+Rita
+
+
+Regards,
+
+
+Rita","0","0"
+"RCT279482        ","HyndmanR","11-Jul-23 5:02:01 PM","9","","0","1"
+"RCT279482","OlarteR","11-Jul-23 5:03:03 PM","1","Thanks Catherine","0","0"
+"RCT279482        ","LindsayM","12-Jul-23 9:05:05 AM","9","","0","1"
+"RCT279482","OlarteR","12-Jul-23 12:38:53 PM","1","Hi Rosalie,
+
+Hope this message finds you well.
+Kindly approve this non-stok item order from NZ Safety.
+Anne Gaines is on extended sick leave and i was advise by Mike you are setup as the approver via automatic process.
+
+Thank you.
+
+Rita","0","0"
+"RCT284137","ChangY","13-Jul-23 10:58:31 AM","1","","0","0"
+"RCT285022","OlarteR","13-Jul-23 1:47:27 PM","1","","0","0"
+"RCT285065        ","HyndmanR","13-Jul-23 8:35:38 PM","9","Andrew cannot be first level approver - reset.","0","1"
+"RCT285064        ","HyndmanR","13-Jul-23 8:35:53 PM","9","Andrew cannot be first level approver - reset.","0","1"
+"RCT284137        ","VoschezangR","16-Jul-23 8:27:30 AM","2","variance noted and approved for payment","0","0"
+"RCT284047        ","BolstadA","17-Jul-23 8:04:09 AM","2","Approved please","0","0"

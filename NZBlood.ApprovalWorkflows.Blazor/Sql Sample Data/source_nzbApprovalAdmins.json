@@ -1,0 +1,37 @@
+﻿[
+    {
+        "UserID":  "BRITTONF                       ",
+        "UserName":  "Fiona Britton                                                    ",
+        "ADUserID":  "BrittonF                                                                                                                                                                                                                                                       ",
+        "EmailAddress":  "fiona.britton@nzblood.co.nz                                                                                                                                                                                                                                    ",
+        "Inactive":  "Yes"
+    },
+    {
+        "UserID":  "CHANGL                         ",
+        "UserName":  "Lisong Chang                                                     ",
+        "ADUserID":  "ChangL                                                                                                                                                                                                                                                         ",
+        "EmailAddress":  "lisong.chang@nzblood.co.nz                                                                                                                                                                                                                                     ",
+        "Inactive":  "No"
+    },
+    {
+        "UserID":  "HYNDMANR                       ",
+        "UserName":  "Robert Hyndman                                                   ",
+        "ADUserID":  "HyndmanR                                                                                                                                                                                                                                                       ",
+        "EmailAddress":  "robert.hyndman@nzblood.co.nz                                                                                                                                                                                                                                   ",
+        "Inactive":  "No"
+    },
+    {
+        "UserID":  "LINDSAYM                       ",
+        "UserName":  "Michael Lindsay                                                  ",
+        "ADUserID":  "LindsayM                                                                                                                                                                                                                                                       ",
+        "EmailAddress":  "michael.lindsay@nzblood.co.nz                                                                                                                                                                                                                                  ",
+        "Inactive":  "No"
+    },
+    {
+        "UserID":  "PAKA                           ",
+        "UserName":  "Agatha Pak                                                       ",
+        "ADUserID":  "PakA                                                                                                                                                                                                                                                           ",
+        "EmailAddress":  "agatha.pak@nzblood.co.nz                                                                                                                                                                                                                                       ",
+        "Inactive":  "Yes"
+    }
+]

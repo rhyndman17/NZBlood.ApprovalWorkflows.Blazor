@@ -1,0 +1,227 @@
+﻿[
+    {
+        "ReceiptNumber":  "RCT284577",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1688509138000)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284573",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1688509231653)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284724",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1688518377973)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284727",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1688519388653)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284727        ",
+        "UserId":  "RobinsonD",
+        "StatusDateTime":  "\/Date(1688587864357)\/",
+        "StatusId":  2,
+        "Comment":  "This is approved.  Requesting price to be updated in the system 06.07.23",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284724        ",
+        "UserId":  "HassanV",
+        "StatusDateTime":  "\/Date(1688588227343)\/",
+        "StatusId":  2,
+        "Comment":  "The variance between PO and the invoice is due to the fact that the PO was raised with an Estimate and not the actual. The invoice is always issued after the job is completed.\n\nVijay Hassan",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284850",
+        "UserId":  "ChangY",
+        "StatusDateTime":  "\/Date(1688685910073)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT279296",
+        "UserId":  "ChangY",
+        "StatusDateTime":  "\/Date(1688936627960)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284229",
+        "UserId":  "ChangY",
+        "StatusDateTime":  "\/Date(1688936657053)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284234",
+        "UserId":  "ChangY",
+        "StatusDateTime":  "\/Date(1688936681393)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284919",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1688946186017)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284919        ",
+        "UserId":  "RobinsonD",
+        "StatusDateTime":  "\/Date(1689019759693)\/",
+        "StatusId":  2,
+        "Comment":  "This is approved, the price has been updated in the system",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "UserId":  "HyndmanR",
+        "StatusDateTime":  "\/Date(1689050452653)\/",
+        "StatusId":  9,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284850        ",
+        "UserId":  "RobinsonD",
+        "StatusDateTime":  "\/Date(1689025530683)\/",
+        "StatusId":  2,
+        "Comment":  "This is approved, the price has since been updated in the system.",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "UserId":  "OlarteR",
+        "StatusDateTime":  "\/Date(1689050911530)\/",
+        "StatusId":  1,
+        "Comment":  "Hi Dyane,\n\nI know you have approved this PPV invoice through email..\n\nWithe the new system, can you approve it here so the invoice will be available for payment?\n\nMoving forward, once you approve, it will make the invoice ready for payment \u0026 no need for you to email us..\n\nThanks you.\n\n\nRita\n\n\nRegards,\n\n\nRita",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "UserId":  "HyndmanR",
+        "StatusDateTime":  "\/Date(1689051721230)\/",
+        "StatusId":  9,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "UserId":  "OlarteR",
+        "StatusDateTime":  "\/Date(1689051783153)\/",
+        "StatusId":  1,
+        "Comment":  "Thanks Catherine",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "UserId":  "LindsayM",
+        "StatusDateTime":  "\/Date(1689109505407)\/",
+        "StatusId":  9,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "UserId":  "OlarteR",
+        "StatusDateTime":  "\/Date(1689122333890)\/",
+        "StatusId":  1,
+        "Comment":  "Hi Rosalie,\n\nHope this message finds you well.\nKindly approve this non-stok item order from NZ Safety.\nAnne Gaines is on extended sick leave and i was advise by Mike you are setup as the approver via automatic process.\n\nThank you.\n\nRita",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284137",
+        "UserId":  "ChangY",
+        "StatusDateTime":  "\/Date(1689202711170)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT285022",
+        "UserId":  "OlarteR",
+        "StatusDateTime":  "\/Date(1689212847657)\/",
+        "StatusId":  1,
+        "Comment":  "",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT285065        ",
+        "UserId":  "HyndmanR",
+        "StatusDateTime":  "\/Date(1689237338470)\/",
+        "StatusId":  9,
+        "Comment":  "Andrew cannot be first level approver - reset.",
+        "IsManager":  0,
+        "IsAdmin":  1
+    },
+    {
+        "ReceiptNumber":  "RCT285064        ",
+        "UserId":  "HyndmanR",
+        "StatusDateTime":  "\/Date(1689237353747)\/",
+        "StatusId":  9,
+        "Comment":  "Andrew cannot be first level approver - reset.",
+        "IsManager":  0,
+        "IsAdmin":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284137        ",
+        "UserId":  "VoschezangR",
+        "StatusDateTime":  "\/Date(1689452850550)\/",
+        "StatusId":  2,
+        "Comment":  "variance noted and approved for payment",
+        "IsManager":  0,
+        "IsAdmin":  0
+    },
+    {
+        "ReceiptNumber":  "RCT284047        ",
+        "UserId":  "BolstadA",
+        "StatusDateTime":  "\/Date(1689537849083)\/",
+        "StatusId":  2,
+        "Comment":  "Approved please",
+        "IsManager":  0,
+        "IsAdmin":  0
+    }
+]

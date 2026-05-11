@@ -1,0 +1,202 @@
+﻿[
+    {
+        "ReceiptNumber":  "RCT279296        ",
+        "StatusDateTime":  "\/Date(1689026127617)\/",
+        "UserID":  "RobinsonD",
+        "StatusText":  "Approved",
+        "Comment":  "This is approved.  Confirmation has been received from the supplier regarding correct UOM and prices so I will get the system updated.",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT279296",
+        "StatusDateTime":  "\/Date(1688936627960)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "StatusDateTime":  "\/Date(1689538263733)\/",
+        "UserID":  "SzymanikA",
+        "StatusText":  "Approved",
+        "Comment":  "Non-contract, non-stock item",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "StatusDateTime":  "\/Date(1689194367283)\/",
+        "UserID":  "VoschezangR",
+        "StatusText":  "Approved",
+        "Comment":  "Variance noted abd approved, local spreadsheet updated",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "StatusDateTime":  "\/Date(1689122333890)\/",
+        "UserID":  "OlarteR",
+        "StatusText":  "Submitted",
+        "Comment":  "Hi Rosalie,\n\nHope this message finds you well.\nKindly approve this non-stok item order from NZ Safety.\nAnne Gaines is on extended sick leave and i was advise by Mike you are setup as the approver via automatic process.\n\nThank you.\n\nRita",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "StatusDateTime":  "\/Date(1689109505407)\/",
+        "UserID":  "LindsayM",
+        "StatusText":  "Reset",
+        "Comment":  "",
+        "StatusId":  9
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "StatusDateTime":  "\/Date(1689051783153)\/",
+        "UserID":  "OlarteR",
+        "StatusText":  "Submitted",
+        "Comment":  "Thanks Catherine",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "StatusDateTime":  "\/Date(1689051721230)\/",
+        "UserID":  "HyndmanR",
+        "StatusText":  "Reset",
+        "Comment":  "",
+        "StatusId":  9
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "StatusDateTime":  "\/Date(1689050911530)\/",
+        "UserID":  "OlarteR",
+        "StatusText":  "Submitted",
+        "Comment":  "Hi Dyane,\n\nI know you have approved this PPV invoice through email..\n\nWithe the new system, can you approve it here so the invoice will be available for payment?\n\nMoving forward, once you approve, it will make the invoice ready for payment \u0026 no need for you to email us..\n\nThanks you.\n\n\nRita\n\n\nRegards,\n\n\nRita",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT279482        ",
+        "StatusDateTime":  "\/Date(1689050452653)\/",
+        "UserID":  "HyndmanR",
+        "StatusText":  "Reset",
+        "Comment":  "",
+        "StatusId":  9
+    },
+    {
+        "ReceiptNumber":  "RCT279482",
+        "StatusDateTime":  "\/Date(1689047241080)\/",
+        "UserID":  "OlarteR",
+        "StatusText":  "Submitted",
+        "Comment":  "Hi Andrew,\n\nDyane has approved this non-stock order..\n\nI\u0027ve sent it in your email as well..\n\nThank you.\n\n\nRita",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT282783        ",
+        "StatusDateTime":  "\/Date(1689025923310)\/",
+        "UserID":  "RobinsonD",
+        "StatusText":  "Approved",
+        "Comment":  "This is approved.  I have requested the price to be updated.",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT282783",
+        "StatusDateTime":  "\/Date(1688936588357)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284047        ",
+        "StatusDateTime":  "\/Date(1689538379350)\/",
+        "UserID":  "SzymanikA",
+        "StatusText":  "Approved",
+        "Comment":  "Variable service cost.",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT284047        ",
+        "StatusDateTime":  "\/Date(1689537849083)\/",
+        "UserID":  "BolstadA",
+        "StatusText":  "Approved",
+        "Comment":  "Approved please",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT284047",
+        "StatusDateTime":  "\/Date(1689197912127)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284047        ",
+        "StatusDateTime":  "\/Date(1689195581193)\/",
+        "UserID":  "GambolE",
+        "StatusText":  "Rejected",
+        "Comment":  "Rejected because I am not authorised to approve.",
+        "StatusId":  3
+    },
+    {
+        "ReceiptNumber":  "RCT284047",
+        "StatusDateTime":  "\/Date(1688936449127)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284137        ",
+        "StatusDateTime":  "\/Date(1689538313707)\/",
+        "UserID":  "SzymanikA",
+        "StatusText":  "Approved",
+        "Comment":  "Variable service cost. Non-contract.",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT284137        ",
+        "StatusDateTime":  "\/Date(1689452850550)\/",
+        "UserID":  "VoschezangR",
+        "StatusText":  "Approved",
+        "Comment":  "variance noted and approved for payment",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT284137",
+        "StatusDateTime":  "\/Date(1689202711170)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284137        ",
+        "StatusDateTime":  "\/Date(1689202581837)\/",
+        "UserID":  "WoodA",
+        "StatusText":  "Rejected",
+        "Comment":  "Cant Approve",
+        "StatusId":  3
+    },
+    {
+        "ReceiptNumber":  "RCT284137",
+        "StatusDateTime":  "\/Date(1689113108160)\/",
+        "UserID":  "ChangY",
+        "StatusText":  "Submitted",
+        "Comment":  "",
+        "StatusId":  1
+    },
+    {
+        "ReceiptNumber":  "RCT284210        ",
+        "StatusDateTime":  "\/Date(1690403450703)\/",
+        "UserID":  "SzymanikA",
+        "StatusText":  "Approved",
+        "Comment":  "Non-inventory item subject to price increase.",
+        "StatusId":  2
+    },
+    {
+        "ReceiptNumber":  "RCT284210        ",
+        "StatusDateTime":  "\/Date(1690401680163)\/",
+        "UserID":  "WhiteB",
+        "StatusText":  "Approved",
+        "Comment":  "Approved",
+        "StatusId":  2
+    }
+]

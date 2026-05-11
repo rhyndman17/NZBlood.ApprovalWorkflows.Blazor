@@ -1,0 +1,38 @@
+﻿[
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ApprovalDescription":  "PPV Approval #1                                                  ",
+        "MaxDollarVariance":  25.00000,
+        "MaxPcVariance":  5.00000,
+        "IgnoreVarianceLessThan":  1.00000,
+        "AuthorisedADGroups":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "DefaultADGroup":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "ManagerADAccount":  "SzymanikA                                                                                                                                                                                                                                                      ",
+        "ManagerEmailAddress":  "andrew.szymanik@nzblood.co.nz                                                                                                                                                                                                                                  ",
+        "Active":  "Yes"
+    },
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ApprovalDescription":  "PPV Approval #1                                                  ",
+        "MaxDollarVariance":  25.00000,
+        "MaxPcVariance":  5.00000,
+        "IgnoreVarianceLessThan":  1.00000,
+        "AuthorisedADGroups":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "DefaultADGroup":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "ManagerADAccount":  "JamiesonA                                                                                                                                                                                                                                                      ",
+        "ManagerEmailAddress":  "andrea.jamieson@nzblood.co.nz                                                                                                                                                                                                                                  ",
+        "Active":  "No"
+    },
+    {
+        "ApprovalID":  "PPV1                           ",
+        "ApprovalDescription":  "PPV Approval #1                                                  ",
+        "MaxDollarVariance":  25.00000,
+        "MaxPcVariance":  5.00000,
+        "IgnoreVarianceLessThan":  1.00000,
+        "AuthorisedADGroups":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "DefaultADGroup":  "NZBSPurchasing                                                                                                                                                                                                                                                 ",
+        "ManagerADAccount":  "MctagueJ                                                                                                                                                                                                                                                       ",
+        "ManagerEmailAddress":  "jenna.mctague@nzblood.co.nz                                                                                                                                                                                                                                    ",
+        "Active":  "No"
+    }
+]

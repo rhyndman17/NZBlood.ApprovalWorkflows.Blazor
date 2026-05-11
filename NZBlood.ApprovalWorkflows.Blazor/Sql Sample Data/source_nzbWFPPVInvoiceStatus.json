@@ -1,0 +1,30 @@
+﻿[
+    {
+        "ReceiptNumber":  "RCT317854",
+        "UserId":  "sa",
+        "StatusDateTime":  "\/Date(1778298384030)\/",
+        "StatusId":  1,
+        "ManagerApproval":  1
+    },
+    {
+        "ReceiptNumber":  "RCT287075",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1694500293720)\/",
+        "StatusId":  1,
+        "ManagerApproval":  0
+    },
+    {
+        "ReceiptNumber":  "RCT287073",
+        "UserId":  "SolankiK",
+        "StatusDateTime":  "\/Date(1694500152947)\/",
+        "StatusId":  1,
+        "ManagerApproval":  0
+    },
+    {
+        "ReceiptNumber":  "RCT317855",
+        "UserId":  "sa",
+        "StatusDateTime":  "\/Date(1778298586890)\/",
+        "StatusId":  1,
+        "ManagerApproval":  0
+    }
+]

@@ -1,0 +1,134 @@
+﻿[
+    {
+        "Name":  "_schema",
+        "RowCount":  93,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\_schema.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\_schema.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVDashboard",
+        "RowCount":  2,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVDashboard.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVDashboard.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVApproverList",
+        "RowCount":  2,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVApproverList.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVApproverList.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVTransactionLne",
+        "RowCount":  6,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVTransactionLne.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVTransactionLne.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVTransactionHdr",
+        "RowCount":  4,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVTransactionHdr.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVTransactionHdr.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVInvoiceHistory",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVInvoiceHistory.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVInvoiceHistory.csv"
+    },
+    {
+        "Name":  "source_nzbWFPPVInvoiceStatus",
+        "RowCount":  4,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVInvoiceStatus.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbWFPPVInvoiceStatus.csv"
+    },
+    {
+        "Name":  "source_nzbPPVSetup",
+        "RowCount":  3,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbPPVSetup.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbPPVSetup.csv"
+    },
+    {
+        "Name":  "source_nzbApprovalAdmins",
+        "RowCount":  5,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_nzbApprovalAdmins.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_nzbApprovalAdmins.csv"
+    },
+    {
+        "Name":  "source_CO00101",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_CO00101.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_CO00101.csv"
+    },
+    {
+        "Name":  "source_CO00102",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_CO00102.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_CO00102.csv"
+    },
+    {
+        "Name":  "source_coAttachmentItems",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\source_coAttachmentItems.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\source_coAttachmentItems.csv"
+    },
+    {
+        "Name":  "app_dashboard",
+        "RowCount":  2,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_dashboard.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_dashboard.csv"
+    },
+    {
+        "Name":  "app_approvers",
+        "RowCount":  2,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_approvers.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_approvers.csv"
+    },
+    {
+        "Name":  "app_admins",
+        "RowCount":  5,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_admins.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_admins.csv"
+    },
+    {
+        "Name":  "app_managers",
+        "RowCount":  3,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_managers.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_managers.csv"
+    },
+    {
+        "Name":  "app_receipt_header",
+        "RowCount":  2,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_header.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_header.csv"
+    },
+    {
+        "Name":  "app_receipt_lines",
+        "RowCount":  6,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_lines.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_lines.csv"
+    },
+    {
+        "Name":  "app_receipt_attachments",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_attachments.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_attachments.csv"
+    },
+    {
+        "Name":  "app_receipt_history",
+        "RowCount":  25,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_history.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_history.csv"
+    },
+    {
+        "Name":  "app_receipt_transaction_comment",
+        "RowCount":  4,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_transaction_comment.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_transaction_comment.csv"
+    },
+    {
+        "Name":  "app_receipt_status",
+        "RowCount":  4,
+        "JsonFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_status.json",
+        "CsvFile":  "C:\\_workspace\\ExportedSamples\\app_receipt_status.csv"
+    }
+]

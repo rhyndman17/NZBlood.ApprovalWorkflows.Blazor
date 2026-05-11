@@ -1,0 +1,32 @@
+﻿[
+    {
+        "ReceiptNumber":  "RCT317854        ",
+        "VendorID":  "HEA004         ",
+        "VendorName":  "Healthcare Logistics",
+        "VendorDocNumber":  "ABC001               ",
+        "SubmittedBy":  "sa             ",
+        "SubmittedByEmailAddress":  "robert.hyndman@nzblood.co.nz                                                                        ",
+        "SubmittedDateTime":  "\/Date(1778298384020)\/",
+        "Approvers":  " SrvAdmin",
+        "PurchaseOrders":  " 123427-CHBB",
+        "ManagerApproval":  1,
+        "ManagerApprovalDisplay":  "Yes",
+        "Comment":  "Test comment from submission",
+        "FirstLevelApprover":  ""
+    },
+    {
+        "ReceiptNumber":  "RCT317855        ",
+        "VendorID":  "HEA004         ",
+        "VendorName":  "Healthcare Logistics",
+        "VendorDocNumber":  "TES091AB67           ",
+        "SubmittedBy":  "sa             ",
+        "SubmittedByEmailAddress":  "robert.hyndman@nzblood.co.nz                                                                        ",
+        "SubmittedDateTime":  "\/Date(1778298586887)\/",
+        "Approvers":  " SrvAdmin",
+        "PurchaseOrders":  " 125841-HBLG",
+        "ManagerApproval":  0,
+        "ManagerApprovalDisplay":  "No",
+        "Comment":  "",
+        "FirstLevelApprover":  ""
+    }
+]
