@@ -1,2 +1,2 @@
-cd "C:\Users\RobertHyndman\OneDrive - Altara Limited\Dev\General\NZBlood.ApprovalWorkflowsWI\NZBlood.ApprovalWorkflows.Blazor\"
+Set-Location "C:\Users\RobertHyndman\OneDrive - Altara Limited\Dev\General\NZBlood.ApprovalWorkflowsWI\NZBlood.ApprovalWorkflows.Blazor\"
 dotnet publish .\NZBlood.ApprovalWorkflows.Blazor.csproj -c Release -o .\publish
